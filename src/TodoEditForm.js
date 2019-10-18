@@ -7,11 +7,13 @@ import { TodoContext } from './contexts/TodoContext'
 function TodoEditForm({id, todoTask, setEditing }){
     const [todo, setTodo, reset] = useInputState(todoTask)
 
-    const { editTodo }= useContext(TodoContext);
+    // const { editTodo }= useContext(TodoContext);
+    const { dispatch }= useContext(TodoContext);
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
-        editTodo(id, todo );
+        // editTodo(id, todo );
+        dispatch({type: "EDIT_TODO", id: id, task: todo})
         setEditing();
     }
     return(

@@ -1,12 +1,8 @@
-// all methods that interact with todos
-// editTodo
-// toggleTodo
-// deleteTodo
-// todos
 
-import React, {createContext} from 'react'
+import React, { createContext, useReducer } from 'react'
 import uuid from 'uuid/v1'
 import useTodoState from '../hooks/useTodoState'
+import todoReducer from '../reducers/todoReducer'
 
 const defaultTodos = [
     {id: uuid(), task: "Study React", completed: false, isEditable: true},
@@ -18,9 +14,11 @@ const defaultTodos = [
 const TodoContext = createContext()
 
 function TodoProvider(props){
-    const {todoArry, addTodo, deleteTodo, toggleTodo, editTodo} = useTodoState(defaultTodos);
+    // const {todoArry, addTodo, deleteTodo, toggleTodo, editTodo} = useTodoState(defaultTodos);
+    const [todoArry, dispatch] = useReducer(todoReducer, defaultTodos)
     return(
-        <TodoContext.Provider value={{todoArry, addTodo, deleteTodo, toggleTodo, editTodo}}>
+        // <TodoContext.Provider value={{todoArry, addTodo, deleteTodo, toggleTodo, editTodo}}>
+        <TodoContext.Provider value={{todoArry, dispatch}}>
             {props.children}
         </TodoContext.Provider>
     )

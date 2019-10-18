@@ -6,12 +6,14 @@ import { TodoContext } from './contexts/TodoContext'
 
 function TodoForm(props){
     const [todo, setTodo, reset] = useInputState("")
-    const { addTodo }= useContext(TodoContext);
+    // const { addTodo }= useContext(TodoContext);
+    const { dispatch }= useContext(TodoContext);
   
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
-        addTodo(todo);
+        // addTodo(todo);
+        dispatch({type: "ADD_TODO", task: todo})
         reset("Add New Todo");
     }
     return(

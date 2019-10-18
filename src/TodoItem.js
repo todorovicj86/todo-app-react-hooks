@@ -12,8 +12,8 @@ import { TodoContext } from './contexts/TodoContext'
 
 function TodoItem({todoTask, completed, id}){
     const [isEditing, setEditing] = useToggle(false)
-    const { deleteTodo, toggleTodo }= useContext(TodoContext);
-
+    // const { deleteTodo, toggleTodo }= useContext(TodoContext);
+    const { dispatch }= useContext(TodoContext);
     return(
         <>
             <ListItem key={uuid()} style={{height: "64px"}}>
@@ -25,9 +25,16 @@ function TodoItem({todoTask, completed, id}){
                     />
                 :
                 <>
-                    <Checkbox onClick={() => toggleTodo(id)} checked = {completed} tabIndex ={-1} />
+                    {/* <Checkbox onClick={() => toggleTodo(id)} checked = {completed} tabIndex ={-1} /> */}
+                    <Checkbox 
+                        checked = {completed} 
+                        tabIndex ={-1}
+                        onClick={() => dispatch({type: "TOGGLE_TODO", id: id})} />
                     <ListItemText style={{textDecoration: completed ? "line-through" : "none"}}>{todoTask}</ListItemText>
-                    <IconButton aria-label="Delete" onClick={() => deleteTodo(id)} id={id}>
+                    {/* <IconButton aria-label="Delete" onClick={() => deleteTodo(id)} id={id}> */}
+                    <IconButton aria-label="Delete" 
+                            onClick={() => dispatch({type: "DELETE_TODO", id: id})} 
+                    >
                         <DeleteIcon />
                     </IconButton>
                     <IconButton aria-label="Edit" onClick = {setEditing}>
