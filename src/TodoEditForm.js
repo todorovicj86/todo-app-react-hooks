@@ -2,13 +2,13 @@ import React, {useContext} from 'react'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button'
 import useInputState from '././hooks/useInputState'
-import { TodoContext } from './contexts/TodoContext'
+import { DispatchContext } from './contexts/TodoContext'
 
 function TodoEditForm({id, todoTask, setEditing }){
     const [todo, setTodo, reset] = useInputState(todoTask)
 
     // const { editTodo }= useContext(TodoContext);
-    const { dispatch }= useContext(TodoContext);
+    const dispatch= useContext(DispatchContext);
 
     const handleSubmit = (evt) => {
         evt.preventDefault();

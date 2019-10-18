@@ -7,7 +7,7 @@ import uuid from 'uuid/v1'
 import { TodoContext } from './contexts/TodoContext'
 
 function TodoList(props){
-    const { todoArry }= useContext(TodoContext);
+    const todoArry = useContext(TodoContext);
     if(todoArry.length)
     return(
         <Paper>

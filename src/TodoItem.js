@@ -8,12 +8,12 @@ import EditIcon from '@material-ui/icons/Edit';
 import useToggle from './hooks/useToggle'
 import TodoEditForm from './TodoEditForm'
 import uuid from 'uuid/v1'
-import { TodoContext } from './contexts/TodoContext'
+import { DispatchContext } from './contexts/TodoContext'
 
 function TodoItem({todoTask, completed, id}){
     const [isEditing, setEditing] = useToggle(false)
     // const { deleteTodo, toggleTodo }= useContext(TodoContext);
-    const { dispatch }= useContext(TodoContext);
+    const dispatch = useContext(DispatchContext);
     return(
         <>
             <ListItem key={uuid()} style={{height: "64px"}}>
