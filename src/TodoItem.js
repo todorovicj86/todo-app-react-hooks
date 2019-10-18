@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useContext, memo} from 'react'
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -48,4 +48,4 @@ function TodoItem({todoTask, completed, id}){
     )
 }
 
-export default TodoItem;
+export default memo(TodoItem);
