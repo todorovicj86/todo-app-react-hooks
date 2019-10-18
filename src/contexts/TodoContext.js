@@ -12,16 +12,19 @@ const defaultTodos = [
 
 
 const TodoContext = createContext()
+const DispatchContext = createContext()
 
 function TodoProvider(props){
     // const {todoArry, addTodo, deleteTodo, toggleTodo, editTodo} = useTodoState(defaultTodos);
     const [todoArry, dispatch] = useReducer(todoReducer, defaultTodos)
     return(
         // <TodoContext.Provider value={{todoArry, addTodo, deleteTodo, toggleTodo, editTodo}}>
-        <TodoContext.Provider value={{todoArry, dispatch}}>
-            {props.children}
+        <TodoContext.Provider value={todoArry}>
+            <DispatchContext.Provider value={dispatch}>
+                {props.children}
+            </DispatchContext.Provider>
         </TodoContext.Provider>
     )
 }
 
-export { TodoContext, TodoProvider }
+export { TodoContext, TodoProvider, DispatchContext }
